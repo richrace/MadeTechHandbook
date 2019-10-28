@@ -3,6 +3,7 @@ import { Text, Image } from 'react-native';
 
 import styles from './NavHeaderStyles/NavHeader.style';
 
+const madeTechLogo = require('../../images/made-tech-logo-colour-fe96d680ccf157972a92723cc5266af6.png')
 
 class NavHeader extends React.Component {
   render = () => {
@@ -11,7 +12,7 @@ class NavHeader extends React.Component {
       //   {this.props.header}
         <Image
           style={styles.image}
-          source={require('../../images/made-tech-logo-colour-fe96d680ccf157972a92723cc5266af6.png')}
+          source={madeTechLogo}
         />
       // </Text>
   
