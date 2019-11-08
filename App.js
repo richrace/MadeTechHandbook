@@ -17,19 +17,19 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {
-} from 'react-native/Libraries/NewAppScreen';
+import {} from 'react-native/Libraries/NewAppScreen';
 
-import { NavHeader } from './components/NavHeader/NavHeader'
-
+import {NavHeader} from './components/NavHeader/NavHeader';
+import {Content} from './components/Content/Content';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <NavHeader/>
         <ScrollView>
+          <NavHeader />
+          <Content />
         </ScrollView>
       </SafeAreaView>
     </>
