@@ -11,20 +11,30 @@ class Content extends React.Component {
 
   fetchData = async () => {
     const response = await fetch(
-      'https://raw.githubusercontent.com/madetech/handbook/master/README.md',
+      'https://github.com/madetech/handbook/blob/master/README.md',
     );
     return await response.text();
   };
 
+  parseLinks = (data) => {
+    var result = data.match(/<a[^>]*href="([^"]*)"/g);
+    console.log(result);
+    
+    for (var key in data) {
+      return(result[key]);
+    }
+  };
+
   async componentDidMount() {
-    const text = await this.fetchData();
-    this.setState({text: text});
+    const rawHtml = await this.fetchData();
+    const result = this.parseLinks(rawHtml)
+    this.setState({text: result});
   }
 
   render = () => {
     return (
       <View>
-        <Text style={{paddingRight: 15, paddingLeft: 15}}>
+        <Text style={{paddingRight: 20, paddingLeft: 20}}>
           {this.state.text}
         </Text>
       </View>
