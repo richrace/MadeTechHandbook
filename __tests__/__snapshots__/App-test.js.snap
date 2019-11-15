@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "paddingLeft": 20,
+        "paddingRight": 20,
+      }
+    }
+  >
+    
+  </Text>
+</View>
+`;
+
+exports[`renders the Content componenet correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "paddingLeft": 20,
+        "paddingRight": 20,
+      }
+    }
+  >
+    
+  </Text>
+</View>
+`;
+
+exports[`renders the Content componenet correctly 2`] = `
+<View
+  accessible={true}
+  focusable={false}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "height": "5%",
+      "justifyContent": "center",
+      "marginTop": 30,
+      "opacity": 1,
+      "paddingBottom": 50,
+      "paddingLeft": 5,
+      "paddingRight": 5,
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../images/made-tech-logo-colour-fe96d680ccf157972a92723cc5266af6.png",
+      }
+    }
+    style={
+      Object {
+        "alignItems": "center",
+        "height": "5%",
+        "justifyContent": "center",
+        "marginTop": 30,
+        "paddingBottom": 50,
+        "paddingLeft": 5,
+        "paddingRight": 5,
+        "width": "100%",
+      }
+    }
+  />
+</View>
+`;
+
+exports[`renders the Content component correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "paddingLeft": 20,
+        "paddingRight": 20,
+      }
+    }
+  >
+    
+  </Text>
+</View>
+`;

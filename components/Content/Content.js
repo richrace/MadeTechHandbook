@@ -16,18 +16,17 @@ class Content extends React.Component {
     return await response.text();
   };
 
-  parseLinks = (data) => {
-    var result = data.match(/<a[^>]*href="([^"]*)"/g);
-    console.log(result);
-    
-    for (var key in data) {
-      return(result[key]);
-    }
+  parseLinks = data => {
+    var results = [
+      ...data.matchAll(new RegExp('<a href="(/madetech[^"]*?)"', 'g')),
+    ].map(str => str[1]);
+
+    return results;
   };
 
   async componentDidMount() {
     const rawHtml = await this.fetchData();
-    const result = this.parseLinks(rawHtml)
+    const result = this.parseLinks(rawHtml);
     this.setState({text: result});
   }
 
