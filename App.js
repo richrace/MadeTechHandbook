@@ -27,7 +27,7 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-      <NavHeader />
+        <NavHeader />
         <ScrollView>
           <Content />
         </ScrollView>

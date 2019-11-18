@@ -1,7 +1,6 @@
 import 'react-native';
 import React from 'react';
 import App from '../App';
-
 import {shallow} from 'enzyme';
 
 import renderer from 'react-test-renderer';
@@ -12,39 +11,20 @@ it('renders correctly', () => {
   renderer.create(<App />);
 });
 
-test('renders the Content componenet correctly', () => {
-  const tree = renderer.create(<Content />).toJSON();
-  expect(tree).toMatchSnapshot();
+it('renders the Content componenet correctly', () => {
+  const content_comp = renderer.create(<Content />).toJSON();
+  expect(content_comp).toMatchSnapshot();
 });
 
-test('renders the Content componenet correctly', () => {
-  const tree = renderer.create(<NavHeader />).toJSON();
-  expect(tree).toMatchSnapshot();
+it('renders the Content componenet correctly', () => {
+  const nav_header_comp = renderer.create(<NavHeader />).toJSON();
+  expect(nav_header_comp).toMatchSnapshot();
 });
 
-describe('Fetching the html from the madetech handbook', () => {
-  it('fetches data from server when server returns a successful response', done => {
-    const mockSuccessResponse = {html: 'html'};
-    const mockPromise = Promise.resolve(mockSuccessResponse);
-    const mockFetchPromise = Promise.resolve({
-      response: () => mockPromise,
-    });
-    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
-
-    const wrapper = shallow(<Content />);
-
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(
-      'https://github.com/madetech/handbook/blob/master/README.md',
-    );
-
-    process.nextTick(() => {
-      expect(wrapper.state()).toEqual({
-        // need to set some state here
-      });
-
-      global.fetch.mockClear();
-      done();
-    });
-  });
+it('should call the fetchData and parseLinks method on the content component', () => {
+  let contentComp = renderer.create(<Content />).getInstance();
+  contentComp.fetchData();
+  contentComp.parseLinks(
+    'a long long long list of links that need to be parsed',
+  );
 });
