@@ -29,10 +29,21 @@ class Content extends React.Component {
     return results;
   };
 
+  openModal = link => {
+    console.log('this will open a modal with the data needed');
+    // This will be called and will open a modal
+    // Along with this it will fetch the data from the link provided to the method
+    // This will then present the data fetched in the modal in markdown
+    // Extract the raw markdown
+    // Convert Markdown to something nicer
+  };
+
   createMultipleComponents = component => {
     for (var i = 0; i < component.length; i++) {
       component[i] = (
-        <Text style={styles.link_style}>
+        <Text
+          style={styles.link_style}
+          onPress={() => this.openModal(component[i])}>
           {component[i].replace(
             'https://raw.githubusercontent.com/madetech/handbook/master/',
             '',
@@ -51,7 +62,6 @@ class Content extends React.Component {
     const result = parsedArray.slice(3);
     const createMultipleComps = this.createMultipleComponents(result);
 
-    console.log(createMultipleComps);
     this.setState({text: createMultipleComps});
   }
 
