@@ -29,31 +29,34 @@ class Content extends React.Component {
     return results;
   };
 
+  createMultipleComponents = component => {
+    for (var i = 0; i < component.length; i++) {
+      component[i] = (
+        <Text style={styles.link_style}>
+          {component[i].replace(
+            'https://raw.githubusercontent.com/madetech/handbook/master/',
+            '',
+          )}
+          {'\n'}
+        </Text>
+      );
+    }
+
+    return component;
+  };
+
   async componentDidMount() {
     const rawHtml = await this.fetchData();
     const parsedArray = this.parseLinks(rawHtml);
     const result = parsedArray.slice(3);
+    const createMultipleComps = this.createMultipleComponents(result);
 
-    this.setState({text: result});
-
-    console.log(result);
+    console.log(createMultipleComps);
+    this.setState({text: createMultipleComps});
   }
 
   render = () => {
-    return (
-      <View>
-        <Text
-          style={{
-            color: 'green',
-            fontSize: 20,
-            paddingRight: 100,
-            paddingLeft: 180,
-          }}
-          onPress={() => Linking.openURL(this.state.text[0])}>
-          Google
-        </Text>
-      </View>
-    );
+    return <Text>{this.state.text}</Text>;
   };
 }
 
