@@ -30,7 +30,8 @@ class Content extends React.Component {
   };
 
   openModal = link => {
-    console.log('this will open a modal with the data needed');
+    console.log(link);
+    // Linking.openURL(link)
     // This will be called and will open a modal
     // Along with this it will fetch the data from the link provided to the method
     // This will then present the data fetched in the modal in markdown
@@ -43,7 +44,7 @@ class Content extends React.Component {
       component[i] = (
         <Text
           style={styles.link_style}
-          onPress={() => this.openModal(component[i])}>
+          onPress={this.openModal(component[i])}>
           {component[i].replace(
             'https://raw.githubusercontent.com/madetech/handbook/master/',
             '',
