@@ -44,11 +44,12 @@ class Content extends React.Component {
       component[i] = (
         <Text
           style={styles.link_style}
-          onPress={this.openModal(component[i])}>
+          onPress={() => this.openModal((component[i]))}> 
           {component[i].replace(
             'https://raw.githubusercontent.com/madetech/handbook/master/',
             '',
           )}
+          {'\n'}
           {'\n'}
         </Text>
       );
