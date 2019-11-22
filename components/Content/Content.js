@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {Linking} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from './ContentStyles/Content.style';
 
 class Content extends React.Component {
@@ -29,46 +28,33 @@ class Content extends React.Component {
     return results;
   };
 
-  openModal = link => {
-    console.log(link);
-    // Linking.openURL(link)
-    // This will be called and will open a modal
-    // Along with this it will fetch the data from the link provided to the method
-    // This will then present the data fetched in the modal in markdown
-    // Extract the raw markdown
-    // Convert Markdown to something nicer
-  };
-
-  createMultipleComponents = component => {
-    for (var i = 0; i < component.length; i++) {
-      component[i] = (
-        <Text
-          style={styles.link_style}
-          onPress={() => this.openModal((component[i]))}> 
-          {component[i].replace(
-            'https://raw.githubusercontent.com/madetech/handbook/master/',
-            '',
-          )}
-          {'\n'}
-          {'\n'}
-        </Text>
-      );
-    }
-
-    return component;
-  };
-
   async componentDidMount() {
     const rawHtml = await this.fetchData();
     const parsedArray = this.parseLinks(rawHtml);
-    const result = parsedArray.slice(3);
-    const createMultipleComps = this.createMultipleComponents(result);
+    const links = parsedArray.slice(3);
 
-    this.setState({text: createMultipleComps});
+    this.setState({text: links});
   }
 
   render = () => {
-    return <Text>{this.state.text}</Text>;
+    console.log(this.state.text);
+
+    if (this.state.text) {
+      return (
+        <View>
+          <FlatList
+            data={this.state.text}
+            renderItem={link => (
+              <TouchableOpacity key={link.index}>
+                <Text>{link.item}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      );
+    } else {
+      return <Text>loading....</Text>;
+    }
   };
 }
 
