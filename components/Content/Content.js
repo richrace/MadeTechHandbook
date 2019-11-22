@@ -28,17 +28,26 @@ class Content extends React.Component {
     return results;
   };
 
+  getTitle = links => {
+    titles = links.map(link =>
+      link.replace(
+        'https://raw.githubusercontent.com/madetech/handbook/master/',
+        '',
+      ),
+    );
+    return titles;
+  };
+
   async componentDidMount() {
     const rawHtml = await this.fetchData();
     const parsedArray = this.parseLinks(rawHtml);
     const links = parsedArray.slice(3);
+    const linkTitiles = this.getTitle(links);
 
-    this.setState({text: links});
+    this.setState({text: linkTitiles});
   }
 
   render = () => {
-    console.log(this.state.text);
-
     if (this.state.text) {
       return (
         <View>
@@ -46,14 +55,14 @@ class Content extends React.Component {
             data={this.state.text}
             renderItem={link => (
               <TouchableOpacity key={link.index}>
-                <Text>{link.item}</Text>
+                <Text style={styles.link_style}>{link.item}</Text>
               </TouchableOpacity>
             )}
           />
         </View>
       );
     } else {
-      return <Text>loading....</Text>;
+      return <Text style={styles.link_style}>Loading....</Text>;
     }
   };
 }
