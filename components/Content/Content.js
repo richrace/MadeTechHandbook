@@ -1,5 +1,8 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
+
+import {LinkRowItem} from '../LinkRowItem/LinkRowItem';
+
 import styles from './ContentStyles/Content.style';
 
 class Content extends React.Component {
@@ -53,11 +56,7 @@ class Content extends React.Component {
         <View>
           <FlatList
             data={this.state.text}
-            renderItem={link => (
-              <TouchableOpacity key={link.index}>
-                <Text style={styles.link_style}>{link.item}</Text>
-              </TouchableOpacity>
-            )}
+            renderItem={link => <LinkRowItem link={link} />}
           />
         </View>
       );
