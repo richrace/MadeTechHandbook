@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 
 import {LinkRowItem} from '../LinkRowItem/LinkRowItem';
+import {SearchBar} from 'react-native-elements';
 
 import styles from './ContentStyles/Content.style';
 
@@ -54,6 +55,12 @@ class Content extends React.Component {
     if (this.state.text) {
       return (
         <View>
+          <SearchBar
+            placeholder="Search the handbook..."
+            lightTheme
+            round
+            onChangeText={this.handleSearch}
+          />
           <FlatList
             data={this.state.text}
             renderItem={link => <LinkRowItem link={link} />}

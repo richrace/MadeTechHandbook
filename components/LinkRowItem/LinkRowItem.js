@@ -7,6 +7,8 @@ import {
   Modal,
 } from 'react-native';
 
+import styles from './LinkRowItemStyles/LinkRowItem.style';
+
 class LinkRowItem extends React.Component {
   constructor(props) {
     super(props);
@@ -53,7 +55,7 @@ class LinkRowItem extends React.Component {
             onPress={() => {
               this.setModalVisible(true);
             }}>
-            <Text>{link.item}</Text>
+            <Text style={styles.link_style}>{link.item}</Text>
           </TouchableHighlight>
         </TouchableOpacity>
       </View>
