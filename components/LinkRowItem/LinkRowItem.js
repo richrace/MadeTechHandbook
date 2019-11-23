@@ -31,8 +31,6 @@ class LinkRowItem extends React.Component {
         <TouchableOpacity
           onPress={() => this._onPressButton(link.item)}
           key={link.index}>
-          <Text>{link.item}</Text>
-
           <Modal
             animationType="slide"
             id={link.index}
@@ -55,7 +53,7 @@ class LinkRowItem extends React.Component {
             onPress={() => {
               this.setModalVisible(true);
             }}>
-            <Text>Show Modal</Text>
+            <Text>{link.item}</Text>
           </TouchableHighlight>
         </TouchableOpacity>
       </View>
