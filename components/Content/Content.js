@@ -9,7 +9,7 @@ import styles from './ContentStyles/Content.style';
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = {text: '', query: ''};
   }
 
   fetchData = async () => {
@@ -52,14 +52,19 @@ class Content extends React.Component {
   }
 
   render = () => {
+    const {query} = this.state;
+
     if (this.state.text) {
       return (
         <View>
           <SearchBar
             placeholder="Search the handbook..."
+            onChangeText={query => {
+              this.setState({query: query});
+            }}
+            value={query}
             lightTheme
             round
-            onChangeText={this.handleSearch}
           />
           <FlatList
             data={this.state.text}
