@@ -1,6 +1,6 @@
 # Made Tech Handbook Mobile Application
 
-This application scrapes all the links from the [Made Tech handbook repo](https://github.com/madetech/handbook) and constructs a simple application which allows users to more easily find information from the our handbook.
+This application scrapes all the links from the [Made Tech handbook repo](https://github.com/madetech/handbook) and constructs a simple application which allows users to more easily search for information from our handbook.
 
 The application uses React Native. To run the application:
 
