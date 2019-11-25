@@ -8,7 +8,7 @@ import styles from './ContentStyles/Content.style';
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: [], query: ''};
+    this.state = {text: []};
   }
 
   fetchData = async () => {
@@ -63,8 +63,6 @@ class Content extends React.Component {
   }
 
   render = () => {
-    const {query} = this.state;
-
     if (this.state.text) {
       return (
         <View>
@@ -72,13 +70,12 @@ class Content extends React.Component {
             placeholder="Search the handbook..."
             placeholderTextColor="#dddddd"
             onChangeText={value => this.searchHandbook(value)}
-            value={query}
             lightTheme
             round
             style={{
               backgroundColor: '#2f363c',
               height: 50,
-              fontSize: 36,
+              fontSize: 20,
               padding: 10,
               color: 'white',
               borderBottomWidth: 0.5,
