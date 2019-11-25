@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, TextInput} from 'react-native';
+import {View, FlatList, TextInput, ActivityIndicator} from 'react-native';
 
 import {LinkRowItem} from '../LinkRowItem/LinkRowItem';
 
@@ -8,7 +8,7 @@ import styles from './ContentStyles/Content.style';
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: []};
+    this.state = {text: [], loading: false};
   }
 
   fetchData = async () => {
@@ -47,7 +47,7 @@ class Content extends React.Component {
     const links = parsedArray.slice(3);
     const linkTitiles = this.getTitle(links);
 
-    this.setState({text: linkTitiles, inMemoryResults: linkTitiles});
+    this.setState({text: linkTitiles, inMemoryResults: linkTitiles, loading: true});
   }
 
   searchHandbook = (value) => {
@@ -63,24 +63,17 @@ class Content extends React.Component {
   }
 
   render = () => {
-    if (this.state.text) {
+    if (this.state.loading) {
       return (
         <View>
           <TextInput
             placeholder="Search the handbook..."
-            placeholderTextColor="#dddddd"
+            placeholderTextColor="#DCDCDC"
             onChangeText={value => this.searchHandbook(value)}
+            clearButtonMode='while-editing'
             lightTheme
             round
-            style={{
-              backgroundColor: '#2f363c',
-              height: 50,
-              fontSize: 20,
-              padding: 10,
-              color: 'white',
-              borderBottomWidth: 0.5,
-              borderBottomColor: '#7d90a0'
-            }}
+            style={styles.searchBar}
           />
           <FlatList
             data={this.state.text}
@@ -90,7 +83,11 @@ class Content extends React.Component {
         </View>
       );
     } else {
-      return <Text style={styles.link_style}>Loading....</Text>;
+      return(
+        <View style={[styles.container, styles.horizontal]}>
+        <ActivityIndicator size="large" color="#42ab3a" />
+        </View>
+      ) 
     }
   };
 }
