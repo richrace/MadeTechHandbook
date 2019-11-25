@@ -1,15 +1,14 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TextInput} from 'react-native';
 
 import {LinkRowItem} from '../LinkRowItem/LinkRowItem';
-import {SearchBar} from 'react-native-elements';
 
 import styles from './ContentStyles/Content.style';
 
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: '', query: ''};
+    this.state = {text: [], query: ''};
   }
 
   fetchData = async () => {
@@ -48,7 +47,19 @@ class Content extends React.Component {
     const links = parsedArray.slice(3);
     const linkTitiles = this.getTitle(links);
 
-    this.setState({text: linkTitiles});
+    this.setState({text: linkTitiles, inMemoryResults: linkTitiles});
+  }
+
+  searchHandbook = (value) => {
+    const filteredResults = this.state.inMemoryResults.filter(
+      item => {
+        let itemLowercase = item.toLowerCase()
+        let searchTermLowercase = value.toLowerCase()
+
+        return itemLowercase.indexOf(searchTermLowercase) > -1
+      }
+    )
+    this.setState({text: filteredResults});
   }
 
   render = () => {
@@ -57,17 +68,26 @@ class Content extends React.Component {
     if (this.state.text) {
       return (
         <View>
-          <SearchBar
+          <TextInput
             placeholder="Search the handbook..."
-            onChangeText={query => {
-              this.setState({query: query});
-            }}
+            placeholderTextColor="#dddddd"
+            onChangeText={value => this.searchHandbook(value)}
             value={query}
             lightTheme
             round
+            style={{
+              backgroundColor: '#2f363c',
+              height: 50,
+              fontSize: 36,
+              padding: 10,
+              color: 'white',
+              borderBottomWidth: 0.5,
+              borderBottomColor: '#7d90a0'
+            }}
           />
           <FlatList
             data={this.state.text}
+            keyExtractor={(index) => index.toString()}
             renderItem={link => <LinkRowItem link={link} />}
           />
         </View>
