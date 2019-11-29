@@ -13,6 +13,7 @@
     "react": "16.9.0",
     "react-native": "0.61.2",
     "react-native-elements": "^1.2.7",
+    "react-native-markdown-renderer": "^3.2.8",
     "react-native-vector-icons": "^6.6.0",
     "watchman": "^1.0.0"
   },

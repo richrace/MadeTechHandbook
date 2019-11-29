@@ -20,7 +20,7 @@ class Content extends React.Component {
 
   parseLinks = data => {
     var results = [
-      ...data.matchAll(new RegExp('<a href="(/madetech[^"]*?)"', 'g')),
+      ...data.matchAll(new RegExp('<a href="(/madetech[^"]*?.md)"', 'g')),
     ].map(str => str[1]);
 
     for (var i = 0; i < results.length; i++) {
@@ -47,20 +47,22 @@ class Content extends React.Component {
     const links = parsedArray.slice(3);
     const linkTitiles = this.getTitle(links);
 
-    this.setState({text: linkTitiles, inMemoryResults: linkTitiles, loading: true});
+    this.setState({
+      text: linkTitiles,
+      inMemoryResults: linkTitiles,
+      loading: true,
+    });
   }
 
-  searchHandbook = (value) => {
-    const filteredResults = this.state.inMemoryResults.filter(
-      item => {
-        let itemLowercase = item.toLowerCase()
-        let searchTermLowercase = value.toLowerCase()
+  searchHandbook = value => {
+    const filteredResults = this.state.inMemoryResults.filter(item => {
+      let itemLowercase = item.toLowerCase();
+      let searchTermLowercase = value.toLowerCase();
 
-        return itemLowercase.indexOf(searchTermLowercase) > -1
-      }
-    )
+      return itemLowercase.indexOf(searchTermLowercase) > -1;
+    });
     this.setState({text: filteredResults});
-  }
+  };
 
   render = () => {
     if (this.state.loading) {
@@ -70,24 +72,24 @@ class Content extends React.Component {
             placeholder="Search the handbook..."
             placeholderTextColor="#DCDCDC"
             onChangeText={value => this.searchHandbook(value)}
-            clearButtonMode='while-editing'
+            clearButtonMode="while-editing"
             lightTheme
             round
             style={styles.searchBar}
           />
           <FlatList
             data={this.state.text}
-            keyExtractor={(index) => index.toString()}
+            keyExtractor={index => index.toString()}
             renderItem={link => <LinkRowItem link={link} />}
           />
         </View>
       );
     } else {
-      return(
+      return (
         <View style={[styles.container, styles.horizontal]}>
-        <ActivityIndicator size="large" color="#42ab3a" />
+          <ActivityIndicator size="large" color="#42ab3a" />
         </View>
-      ) 
+      );
     }
   };
 }
