@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   Modal,
   ScrollView,
+  Button,
 } from 'react-native';
 
 import styles from './LinkRowItemStyles/LinkRowItem.style';
@@ -27,6 +28,11 @@ class LinkRowItem extends React.Component {
         this.props.link.item,
     );
     return await response.text();
+  };
+
+  normalizeTitle = title => {
+    removeMD = title.replace(/.md/gi, '')
+    return removeMD
   };
 
   async componentDidMount() {
@@ -61,13 +67,13 @@ class LinkRowItem extends React.Component {
               </View>
             </View>
           </Modal>
-
-          <TouchableHighlight
+          <Button
+            title={this.normalizeTitle(link.item)}
+            color="green"
             onPress={() => {
               this.setModalVisible(true);
             }}>
-            <Text style={styles.link_style}>{link.item}</Text>
-          </TouchableHighlight>
+          </Button>
         </TouchableOpacity>
       </View>
     );

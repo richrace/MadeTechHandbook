@@ -41,12 +41,25 @@ class Content extends React.Component {
     return titles;
   };
 
+
+  linksAddedManually = () => {
+    const addtionalUrls = [
+      'https://raw.githubusercontent.com/madetech/handbook/master/company/about.md',
+      'https://raw.githubusercontent.com/madetech/handbook/master/company/welcome_pack.md',
+      'https://raw.githubusercontent.com/madetech/handbook/master/guides/welfare/expectation_health_check.md',
+
+    ]
+    return addtionalUrls
+  }
+
   async componentDidMount() {
     const rawHtml = await this.fetchData();
     const parsedArray = this.parseLinks(rawHtml);
     const links = parsedArray.slice(3);
-    const linkTitiles = this.getTitle(links);
+    const addtionalAddedUlrs = links.concat(this.linksAddedManually())
 
+    const linkTitiles = this.getTitle(addtionalAddedUlrs);
+    
     this.setState({
       text: linkTitiles,
       inMemoryResults: linkTitiles,
