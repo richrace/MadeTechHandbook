@@ -46,16 +46,16 @@ class LinkRowItem extends React.Component {
             animationType="slide"
             id={link.index}
             visible={this.state.modalVisible}>
-            <View style={{marginTop: 100}}>
-              <View>
-                <ScrollView>
-                  <TouchableHighlight
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
+              <View style={{marginTop: 100, marginLeft: 25, marginRight: 25, paddingBottom: '8%'}}>
+                <TouchableHighlight
+                style={styles.seperator}
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
                     }}>
-                    <Text>Go Back</Text>
+                  <Text style={styles.back_button}> Back </Text>
                   </TouchableHighlight>
-
+                <View>
+                <ScrollView style={{paddingRight: 10, height: '100%'}}> 
                   <Markdown>{this.state.markdownData}</Markdown>
                 </ScrollView>
               </View>

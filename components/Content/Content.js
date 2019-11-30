@@ -71,13 +71,15 @@ class Content extends React.Component {
           <TextInput
             placeholder="Search the handbook..."
             placeholderTextColor="#DCDCDC"
+            autoCompleteType="off"
+            autoCorrect="false"
             onChangeText={value => this.searchHandbook(value)}
             clearButtonMode="while-editing"
             lightTheme
             round
             style={styles.searchBar}
           />
-          <FlatList
+          <FlatList style={{paddingBottom: '30%'}}
             data={this.state.text}
             keyExtractor={index => index.toString()}
             renderItem={link => <LinkRowItem link={link} />}
