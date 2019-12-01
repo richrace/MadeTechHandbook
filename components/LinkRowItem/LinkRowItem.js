@@ -31,7 +31,11 @@ class LinkRowItem extends React.Component {
   };
 
   normalizeTitle = title => {
-    removeMD = title.replace(/.md/gi, '')
+    removeBackSlashes = title.replace(/\//g, ' ')
+    removeNotNeededText = removeBackSlashes.replace(/.*? /g, ' ')
+    removeUnderScores = removeNotNeededText.replace(/_/g, ' ')
+    removeMD = removeUnderScores.replace(/.md/g, ' ')
+
     return removeMD
   };
 
@@ -46,7 +50,7 @@ class LinkRowItem extends React.Component {
   render = () => {
     const link = this.props.link;
     return (
-      <View>
+      <View style={{paddingBottom: '1%'}}>
         <TouchableOpacity key={link.index}>
           <Modal
             animationType="slide"
